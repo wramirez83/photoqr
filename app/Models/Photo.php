@@ -22,4 +22,9 @@ class Photo extends Model
         $qr = QrCode::format('png')->size(100)->mergeString($path, .3)->generate($vt);
         return $qr;
     }
+
+    public function getTotal($vt){
+        $v = VotePhoto::where('vote_id', $vt)->where('photo_id', $this->id)->get();
+        return $v->count();
+    }
 }

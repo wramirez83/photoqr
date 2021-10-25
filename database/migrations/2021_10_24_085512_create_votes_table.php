@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVotePhotosTable extends Migration
+class CreateVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateVotePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('vote_photos', function (Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('photo_id')->references('id')->on('photos')->onDelete('CASCADE');
-            $table->foreignId('vote_id')->references('id')->on('votes')->onDelete('CASCADE');
-            $table->string('mac', 191)->nullable();
+            $table->string('competence');
+            $table->enum('status', ['Activo', 'Inactivo'])->default('Activo');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateVotePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vote_photos');
+        Schema::dropIfExists('votes');
     }
 }

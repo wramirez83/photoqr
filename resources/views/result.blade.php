@@ -8,11 +8,24 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    <form action="" method="get" name="formVote">
+                        
+                        @csrf
+                        <select name="vote_id" id="vote_id" onchange="getResult()" class="form-control">
+                            <option value="">Seleccionar</option>
+                            @foreach ($votes as $v)
+                            <option value="{{$v->id}}">{{$v->competence}}</option>
+                                
+                            @endforeach
+                        </select>
+                    </form>
+
+                    @if (isset($photos))
+                        <div class="mt-3 pt-2">
+                            <h3>Concurso: {{$vt->competence}}</h3>
+                            <h4>Estado {{$vt->status}}</h4>
                         </div>
-                    @endif
+                   
                         <div class="table-responsive">
                             <table class="table align-middle">
                                 <thead>
@@ -20,8 +33,8 @@
                                         <th>Foto</th>
                                         <th>Autor</th>
                                         <th>Descripcion</th>
-                                        <th>QR</th>
-                                        <th></th>
+                                        <th>Total</th>
+                                        
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -37,32 +50,28 @@
                                                 {{$photo->description}}
                                               </td>
                                               <td>
-                                                <img src="data:image/png;base64, {!! base64_encode($photo->getSvg()) !!} ">
+                                                {{ $photo->getTotal($vt->id)}}
                                               </td>
-                                              <td>
-                                                  <form action="{{Route('photoDelete')}}" method="POST">
-                                                      @csrf
-                                                      @method('delete')
-                                                      <div>
-                                                        <input type="checkbox" id="scales" name="scales"
-                                                               required>
-                                                        <label for="scales">Seguro Eliminar</label>
-                                                      </div>
-                                                      <input type="hidden" name="id" value="{{$photo->id}}">
-                                                      <button type="submit" name=""class="btn btn-danger">
-                                                          Eliminar <img class="text-white" src="{{ (url('/logo/trash-2.svg')) }}">
-                                                      </button>
-                                                  </form>
-                                              </td>
+                                              
                                           </tr>
                                       @endforeach
                                   </tbody>
                             </table>
                         </div>
-                   
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    function getResult(){
+        var id = document.getElementById('vote_id');
+        if(id.length>0){
+            document.formVote.submit();
+        }
+    }
+</script>
 @endsection
