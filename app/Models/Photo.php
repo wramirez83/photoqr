@@ -19,7 +19,7 @@ class Photo extends Model
     public function getSvg(){
         $path = Storage::get('public/logo_sena.png');
         $vt = url("/vt/$this->id");
-        $qr = QrCode::format('png')->size(100)->mergeString($path, .3)->generate($vt);
+        $qr = QrCode::format('png')->size(350)->mergeString($path, .3)->generate($vt);
         return $qr;
     }
 

@@ -37,7 +37,7 @@
                                                 {{$photo->description}}
                                               </td>
                                               <td>
-                                                <img src="data:image/png;base64, {!! base64_encode($photo->getSvg()) !!} ">
+                                                <img src="data:image/png;base64, {!! base64_encode($photo->getSvg()) !!} " width="250">
                                               </td>
                                               <td>
                                                   <form action="{{Route('photoDelete')}}" method="POST">

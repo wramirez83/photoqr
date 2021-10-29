@@ -28,8 +28,9 @@
                        <div class="col-12">
                            <h3>Información QR</h3>
                            <div>
-                            <div class="visible-print text-center">
-                                <img src="data:image/png;base64, {!! base64_encode($qr) !!} ">
+                            <div class="text-center">
+                                <img src="data:image/png;base64, {!! base64_encode($photo->getSvg()) !!} " width="250">
+                                {{-- <img src="data:image/png;base64, {!! base64_encode($qr) !!} "> --}}
                                 <p>Código para la Imagen y Su Votación.</p>
                             </div>
                            </div>
