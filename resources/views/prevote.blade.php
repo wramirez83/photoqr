@@ -19,29 +19,45 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            .bck{
+                background-image: url("/logo/logo_sena.png");
+                opacity: 0.2;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;  
+                background-repeat: no-repeat;
+                background-position: 50% 0 
+            }
         </style>
     </head>
     <body class="">
-        <div class="container">
-            <div class="row">
-                <div class="row">
-                    <div class="col-6">
-                        <img src="{{ asset('storage/img/'. $photo->url) }}" class="img-fluid" alt="{{$photo->author}}" srcset="">
-                        <p>Autor:{{ $photo->author}} </p>
-                        <p>Descripcion:{{ $photo->description}} </p>
-                    </div>
-                    <div class="col-6">
-                        <form action="{{Route('vtSave')}}" method="post">
+
+
+
+<div class="bck"></div>
+<div class="clearfix pt-5 px-2">
+  <img src="{{ asset('storage/img/'. $photo->url) }}" class="col-md-6 float-md-end mb-3 ms-md-3 img-fluid" alt="...">
+    <div class="card">
+  <h5 class="card-header">Información</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{ $photo->author}}</h5>
+    <p class="card-text">{{ $photo->description}}.</p>
+    <form action="{{Route('vtSave')}}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{$photo->id}}">
-                            <div class="d-grid gap-2 min-h-screen">
+                            <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary btn-lg block">Votar Ahora</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+  </div>
+</div>
+
+
+
+</div>
+
     </body>
 </html>

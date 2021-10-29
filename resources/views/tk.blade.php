@@ -19,8 +19,21 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            .bck{
+                background-image: url("/logo/logo_sena.png");
+                opacity: 0.2;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;  
+                background-repeat: no-repeat;
+                background-position: 50% 0 
+            }
         </style>
     </head>
+    <div class="bck"></div>
     <body class="">
         <div class="container">
             <div class="row">
